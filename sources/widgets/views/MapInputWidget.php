@@ -14,36 +14,44 @@ echo Html::beginTag(
         'style' => "width: $width; height: $height;",
         'id' => $id,
         'data' =>
-        [
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-            'zoom' => $zoom,
-            'pattern' => $pattern,
-            'map-type' => $mapType,
-            'animate-marker' => $animateMarker,
-            'align-map-center' => $alignMapCenter,
-        ],
+            [
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'zoom' => $zoom,
+                'pattern' => $pattern,
+                'map-type' => $mapType,
+                'animate-marker' => $animateMarker,
+                'align-map-center' => $alignMapCenter,
+            ],
     ]
 );
 
-    // The actual hidden input
-    echo Html::activeHiddenInput(
-        $model,
-        $attribute,
-        [
-            'class' => 'kolyunya-map-input-widget-input',
-        ]
-    );
+// The actual hidden input
+echo Html::activeHiddenInput(
+    $model,
+    $attribute,
+    [
+        'class' => 'kolyunya-map-input-widget-input',
+    ]
+);
 
-    // Map canvas
-    echo Html::tag(
-        'div',
-        '',
-        [
-            'class' => 'kolyunya-map-input-widget-canvas',
-            'style' => "width: 100%; height: 100%",
-        ]
-    );
+// Search box
+    if ($showSearchBox) {
+            echo Html::input('text', 'map-search-box', null, [
+                    'id' => $id.'-pac-input',
+                    'placeholder' => $searchBoxPlaceholder,
+                    'class' => 'kolyunya-map-input-search-box']);
+    }
+
+// Map canvas
+echo Html::tag(
+    'div',
+    '',
+    [
+        'class' => 'kolyunya-map-input-widget-canvas',
+        'style' => "width: 100%; height: 100%",
+    ]
+);
 
 // [END] - Map input widget container
 echo Html::endTag('div');
