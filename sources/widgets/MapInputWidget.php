@@ -6,6 +6,11 @@ use Yii;
 
 class MapInputWidget extends \yii\widgets\InputWidget
 {
+    public $model = null;
+
+    public $form = null;
+
+    public $field = null;
 
     public $key;
 
@@ -46,6 +51,8 @@ class MapInputWidget extends \yii\widgets\InputWidget
             [
                 'id' => $this->getId(),
                 'model' => $this->model,
+                'form' => $this->form,
+                'field' => $this->field,
                 'attribute' => $this->attribute,
                 'latitude' => $this->latitude,
                 'longitude' => $this->longitude,

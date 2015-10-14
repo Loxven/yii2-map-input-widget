@@ -37,10 +37,18 @@ echo Html::activeHiddenInput(
 
 // Search box
     if ($showSearchBox) {
+        if(!empty($model) && !empty($form) && !empty($field)){
+            echo $form->field($model, $field)->textInput([
+                'maxlength' => true,
+                'id' => $id.'-pac-input',
+                'placeholder' => $searchBoxPlaceholder,
+                'class' => 'kolyunya-map-input-search-box'])->label(false);
+        } else {
             echo Html::input('text', 'map-search-box', null, [
-                    'id' => $id.'-pac-input',
-                    'placeholder' => $searchBoxPlaceholder,
-                    'class' => 'kolyunya-map-input-search-box']);
+                'id' => $id.'-pac-input',
+                'placeholder' => $searchBoxPlaceholder,
+                'class' => 'kolyunya-map-input-search-box']);
+        }
     }
 
 // Map canvas
